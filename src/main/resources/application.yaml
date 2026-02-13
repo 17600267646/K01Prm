@@ -1,0 +1,57 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: K01Prm
+  # Lettuce 配置（RedisTemplate 用）
+  redis:
+    host: localhost
+    port: 6379
+    password: sirroot7&  # 你的 Redis 密码
+    database: 0
+    lettuce:
+      pool:
+        # Lettuce 连接池配置（可选）
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+  datasource:
+    url: jdbc:mysql://localhost:3306/sirdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+    username: root
+    password: sirroot7&
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: sir
+    password: sirroot7&
+    virtual-host: /
+    # 建议使用 UTF-8 作为默认编码
+    requested-heartbeat: 30
+    publisher-confirm-type: correlated
+    publisher-returns: true
+    listener:
+      simple:
+        acknowledge-mode: manual
+
+# Redisson 配置（复用 Spring Redis 配置，也可单独写 redisson.yaml）
+redisson:
+  singleServerConfig:
+    address: redis://${spring.redis.host}:${spring.redis.port}
+    password: ${spring.redis.password}
+    database: ${spring.redis.database}
+    # Redisson 连接池配置（可选）
+    connectionPoolSize: 10
+    connectionMinimumIdleSize: 2
+
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+
+logging:
+  config: classpath:log4j2-spring.xml
+
