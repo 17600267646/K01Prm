@@ -16,6 +16,9 @@ import java.util.List;
  * 2. 修改 outputDir（代码输出目录）
  * 3. 修改 packageConfig（包名）
  * 4. 修改 strategyConfig（表名、字段过滤等）
+ *
+ *
+ *
  * 5. 运行 main 方法即可生成代码
  */
 public class CodeGenerator {
