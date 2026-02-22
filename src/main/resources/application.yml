@@ -6,7 +6,7 @@ spring:
     name: K01Prm
   # Lettuce 配置（RedisTemplate 用）
   redis:
-    host: localhost
+    host: 192.168.84.128
     port: 6379
     password: sirroot7&  # 你的 Redis 密码
     database: 0
@@ -17,12 +17,12 @@ spring:
         max-idle: 8
         min-idle: 0
   datasource:
-    url: jdbc:mysql://localhost:3306/sirdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=utf-8
+    url: jdbc:mysql://192.168.84.128:3306/sirdb?useUnicode=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai&characterEncoding=utf-8
     username: root
-    password: sirroot7&
+    password: sirroot7&A
     driver-class-name: com.mysql.cj.jdbc.Driver
   rabbitmq:
-    host: 127.0.0.1
+    host: 192.168.84.128
     port: 5672
     username: sir
     password: sirroot7&
@@ -37,7 +37,7 @@ spring:
 
 # RocketMQ 配置
 rocketmq:
-  name-server: 127.0.0.1:9876
+  name-server: 192.168.84.128:9876
   producer:
     group: k01prm-producer
     send-message-timeout: 3000
